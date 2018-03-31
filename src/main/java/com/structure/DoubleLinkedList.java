@@ -1,5 +1,7 @@
 package com.structure;
 
+import java.util.NoSuchElementException;
+
 public class DoubleLinkedList<T> {
     private DNode<T> first;
     private DNode<T> last;
@@ -61,8 +63,56 @@ public class DoubleLinkedList<T> {
      * 双链表转置
      * @return
      */
-    public DoubleLinkedList<T> reverse() {
+    public DoubleLinkedList<T> reverse() throws NoSuchElementException{
+        if (this.first == null || this.last == null) {
+            throw new NoSuchElementException();
+        }
+        if (this.first != this.last) {
+            // 交换首尾节点
+            DNode<T> temp = this.first;
+            this.first = this.last;
+            this.last = temp;
 
+            // 迭代并交换所有节点的prev和next
+            DNode<T> node = this.last;
+            while (node.getPrev() != null) {
+                temp = node.getPrev();
+                node.setPrev(node.getNext());
+                node.setNext(temp);
+                node = temp;
+            }
+            // 最后一个节点
+            if (node != null) {
+                node.setPrev(node.getNext());
+                node.setNext(null);
+            }
+        }
         return this;
+    }
+
+    public String toString() {
+        DNode<T> node = this.first;
+        StringBuilder sb = new StringBuilder();
+        boolean isBegin = true;
+        do{
+            if (isBegin) {
+                sb.append(node.toString());
+                isBegin = false;
+            } else {
+                sb.append( " >> " + node.toString());
+            }
+        }while (node.getNext() != null);
+        return sb.toString();
+    }
+
+    public static void main(String args[]) {
+        DoubleLinkedList<Integer> doubleLinkedList = new DoubleLinkedList<Integer>();
+        doubleLinkedList.append(Integer.valueOf(1));
+        doubleLinkedList.append(Integer.valueOf(2));
+        doubleLinkedList.append(Integer.valueOf(3));
+        doubleLinkedList.append(Integer.valueOf(4));
+        doubleLinkedList.append(Integer.valueOf(5));
+
+        System.out.println(doubleLinkedList);
     }
 }
