@@ -75,44 +75,31 @@ public class DoubleLinkedList<T> {
 
             // 迭代并交换所有节点的prev和next
             DNode<T> node = this.last;
-            while (node.getPrev() != null) {
-                temp = node.getPrev();
-                node.setPrev(node.getNext());
-                node.setNext(temp);
+            while (node != null) {
+                temp = node.getNext();
+                node.setNext(node.getPrev());
+                node.setPrev(temp);
                 node = temp;
-            }
-            // 最后一个节点
-            if (node != null) {
-                node.setPrev(node.getNext());
-                node.setNext(null);
             }
         }
         return this;
     }
 
+    @Override
     public String toString() {
         DNode<T> node = this.first;
         StringBuilder sb = new StringBuilder();
         boolean isBegin = true;
-        do{
+        while (node != null) {
             if (isBegin) {
                 sb.append(node.toString());
                 isBegin = false;
             } else {
-                sb.append( " >> " + node.toString());
+                sb.append( "->" + node.toString());
             }
-        }while (node.getNext() != null);
+            node = node.getNext();
+        }
         return sb.toString();
     }
 
-    public static void main(String args[]) {
-        DoubleLinkedList<Integer> doubleLinkedList = new DoubleLinkedList<Integer>();
-        doubleLinkedList.append(Integer.valueOf(1));
-        doubleLinkedList.append(Integer.valueOf(2));
-        doubleLinkedList.append(Integer.valueOf(3));
-        doubleLinkedList.append(Integer.valueOf(4));
-        doubleLinkedList.append(Integer.valueOf(5));
-
-        System.out.println(doubleLinkedList);
-    }
 }

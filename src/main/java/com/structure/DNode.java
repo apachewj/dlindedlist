@@ -34,4 +34,9 @@ public class DNode<T> {
     public void setNext(DNode next) {
         this.next = next;
     }
+
+    @Override
+    public String toString() {
+        return e.toString();
+    }
 }
