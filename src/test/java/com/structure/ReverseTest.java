@@ -10,15 +10,12 @@ public class ReverseTest{
 
     @Before
     public void testBefore() {
-        // 初始化一个双链表
+        // 初始化一个双向链表
         doubleLinkedList = new DoubleLinkedList<Integer>();
         doubleLinkedList.append(1);
         doubleLinkedList.append(2);
         doubleLinkedList.append(3);
-        doubleLinkedList.append(4);
-        doubleLinkedList.append(5);
-        doubleLinkedList.append(6);
-        // 打印双链表
+        // 打印双向链表
         System.out.println(doubleLinkedList.toString());
     }
 

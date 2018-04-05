@@ -23,7 +23,7 @@ public class DoubleLinkedList<T> {
     }
 
     /**
-     * 双链表往前插入一个元素
+     * 双向链表往前插入一个元素
      * @param e
      * @return
      */
@@ -42,7 +42,7 @@ public class DoubleLinkedList<T> {
     }
 
     /**
-     * 双链表往后追加一个元素
+     * 双向链表往后追加一个元素
      * @param e
      * @return
      */
@@ -60,7 +60,7 @@ public class DoubleLinkedList<T> {
     }
 
     /**
-     * 双链表转置
+     * 双向链表转置
      * @return
      */
     public DoubleLinkedList<T> reverse() throws NoSuchElementException{
